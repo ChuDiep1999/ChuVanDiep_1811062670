@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExamsModelStoreContainer" CdmEntityContainer="ExamsEntities">
+    <EntitySetMapping Name="baihats">
+      <EntityTypeMapping TypeName="ExamsModel.baihat">
+        <MappingFragment StoreEntitySet="baihat">
+          <ScalarProperty Name="mabaihat" ColumnName="mabaihat" />
+          <ScalarProperty Name="Tenbaihat" ColumnName="Tenbaihat" />
+          <ScalarProperty Name="Theloai" ColumnName="Theloai" />
+          <ScalarProperty Name="casi" ColumnName="casi" />
+          <ScalarProperty Name="tacgia" ColumnName="tacgia" />
+          <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+          <ScalarProperty Name="thich" ColumnName="thich" />
+          <ScalarProperty Name="loibaihat" ColumnName="loibaihat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TheLoais">
+      <EntityTypeMapping TypeName="ExamsModel.TheLoai">
+        <MappingFragment StoreEntitySet="TheLoai">
+          <ScalarProperty Name="matheloai" ColumnName="matheloai" />
+          <ScalarProperty Name="Tentheloai" ColumnName="Tentheloai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

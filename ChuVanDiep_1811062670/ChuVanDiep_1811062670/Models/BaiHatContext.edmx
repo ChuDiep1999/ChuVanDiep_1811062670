@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExamsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="baihat">
+          <Key>
+            <PropertyRef Name="mabaihat" />
+          </Key>
+          <Property Name="mabaihat" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tenbaihat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Theloai" Type="bigint" Nullable="false" />
+          <Property Name="casi" Type="nvarchar" MaxLength="50" />
+          <Property Name="tacgia" Type="nvarchar" MaxLength="50" />
+          <Property Name="hinhanh" Type="nvarchar" MaxLength="150" />
+          <Property Name="thich" Type="int" />
+          <Property Name="loibaihat" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="TheLoai">
+          <Key>
+            <PropertyRef Name="matheloai" />
+          </Key>
+          <Property Name="matheloai" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tentheloai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_baihat_TheLoai">
+          <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
+          <End Role="baihat" Type="Self.baihat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TheLoai">
+              <PropertyRef Name="matheloai" />
+            </Principal>
+            <Dependent Role="baihat">
+              <PropertyRef Name="Theloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamsModelStoreContainer">
+          <EntitySet Name="baihat" EntityType="Self.baihat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_baihat_TheLoai" Association="Self.FK_baihat_TheLoai">
+            <End Role="TheLoai" EntitySet="TheLoai" />
+            <End Role="baihat" EntitySet="baihat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExamsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="baihat">
+          <Key>
+            <PropertyRef Name="mabaihat" />
+          </Key>
+          <Property Name="mabaihat" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tenbaihat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Theloai" Type="Int64" Nullable="false" />
+          <Property Name="casi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tacgia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="thich" Type="Int32" />
+          <Property Name="loibaihat" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TheLoai1" Relationship="Self.FK_baihat_TheLoai" FromRole="baihat" ToRole="TheLoai" />
+        </EntityType>
+        <EntityType Name="TheLoai">
+          <Key>
+            <PropertyRef Name="matheloai" />
+          </Key>
+          <Property Name="matheloai" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tentheloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="baihats" Relationship="Self.FK_baihat_TheLoai" FromRole="TheLoai" ToRole="baihat" />
+        </EntityType>
+        <Association Name="FK_baihat_TheLoai">
+          <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
+          <End Role="baihat" Type="Self.baihat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TheLoai">
+              <PropertyRef Name="matheloai" />
+            </Principal>
+            <Dependent Role="baihat">
+              <PropertyRef Name="Theloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="baihats" EntityType="Self.baihat" />
+          <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+          <AssociationSet Name="FK_baihat_TheLoai" Association="Self.FK_baihat_TheLoai">
+            <End Role="TheLoai" EntitySet="TheLoais" />
+            <End Role="baihat" EntitySet="baihats" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExamsModelStoreContainer" CdmEntityContainer="ExamsEntities">
+          <EntitySetMapping Name="baihats">
+            <EntityTypeMapping TypeName="ExamsModel.baihat">
+              <MappingFragment StoreEntitySet="baihat">
+                <ScalarProperty Name="mabaihat" ColumnName="mabaihat" />
+                <ScalarProperty Name="Tenbaihat" ColumnName="Tenbaihat" />
+                <ScalarProperty Name="Theloai" ColumnName="Theloai" />
+                <ScalarProperty Name="casi" ColumnName="casi" />
+                <ScalarProperty Name="tacgia" ColumnName="tacgia" />
+                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+                <ScalarProperty Name="thich" ColumnName="thich" />
+                <ScalarProperty Name="loibaihat" ColumnName="loibaihat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TheLoais">
+            <EntityTypeMapping TypeName="ExamsModel.TheLoai">
+              <MappingFragment StoreEntitySet="TheLoai">
+                <ScalarProperty Name="matheloai" ColumnName="matheloai" />
+                <ScalarProperty Name="Tentheloai" ColumnName="Tentheloai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

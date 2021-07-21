@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bài hát</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><img style="padding: 1em 0" src="~/Content/Images/Logo2.png" /></li>
+                        <li><h1 style="text-align: center;">Khoa công nghệ thông tin</h1><h4 style="text-align:center">Kiến tạo tương lai</h4></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><img style="padding: 0.5em 0; width: 74px; width:102px;" src="~/Content/Images/user.png" /></li>
+                        <li class="dropdown"><p style="padding: 3em 0"><i>Chu Văn Điệp</i></p></li>
+                    </ul>
+                </div>
+        </div>
+          
+     </div>
+    <div class="navbar navbar-inversee ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new {@style = "color: white;"})</li>
+                    <li>@Html.ActionLink("Nhạc sĩ", "About", "Home", new { @style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Thể loại", "HienThiTheoTheLoai", "Home", new { @style = "color: white;" })</li>
+                </ul>
+              
+            </div>
+        </div>
+    </div>
+    <div class="product">
+        <div class="container">
+            @RenderBody()
+
+        </div>
+
+    </div>
+    <div class="footer-classss">
+        <p style="color: white">Copyright Chu Văn Điệp </p>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    .product {
+        padding: 1em 0;
+    }
+    .footer-classss {
+        padding: 0.5em;
+        text-align: center;
+        background: #ff0053;
+    }
+    .navbar-inversee {
+        background-color: #ff0053;
+        border-color: #080808;
+    }
+    .head-top {
+        padding: 1em 0;
+    }
+</style>

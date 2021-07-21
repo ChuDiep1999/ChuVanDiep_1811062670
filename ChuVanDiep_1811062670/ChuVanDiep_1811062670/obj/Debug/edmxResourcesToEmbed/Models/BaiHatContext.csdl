@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="baihat">
+    <Key>
+      <PropertyRef Name="mabaihat" />
+    </Key>
+    <Property Name="mabaihat" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tenbaihat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Theloai" Type="Int64" Nullable="false" />
+    <Property Name="casi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tacgia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hinhanh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="thich" Type="Int32" />
+    <Property Name="loibaihat" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TheLoai1" Relationship="Self.FK_baihat_TheLoai" FromRole="baihat" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="matheloai" />
+    </Key>
+    <Property Name="matheloai" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tentheloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="baihats" Relationship="Self.FK_baihat_TheLoai" FromRole="TheLoai" ToRole="baihat" />
+  </EntityType>
+  <Association Name="FK_baihat_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
+    <End Role="baihat" Type="Self.baihat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="matheloai" />
+      </Principal>
+      <Dependent Role="baihat">
+        <PropertyRef Name="Theloai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="baihats" EntityType="Self.baihat" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK_baihat_TheLoai" Association="Self.FK_baihat_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="baihat" EntitySet="baihats" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,51 @@
+﻿@using ChuVanDiep_1811062670.Models
+@model IEnumerable<baihat>
+@{
+    ViewBag.Title = "HienThiTheoTheLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Hiện thị theo tên tác giả</h3>
+<hr />
+<div class="col-md-99 product1">
+    <div class="bottom-product">
+        @foreach (var item in Model.OrderBy(n=>n.tacgia))
+        {
+            <div class="col-md-4 bottom-cd simpleCart_selfItem">
+                <div class="product-at">
+                    <img class="hinhanh img-responsive" src="@Url.Content(item.hinhanh)" />
+                </div>
+                <p class="tun"><b style="color: darkblue;">@item.Tenbaihat</b> - <i>@item.tacgia</i></p>
+        
+            </div>
+
+
+        }
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<br />
+<style>
+    .hinhanh {
+        width: 254px;
+        height: 174px;
+    }
+
+    p.tun {
+        font-size: 1em;
+     
+        text-align: center;
+        line-height: 1.3em;
+    }
+
+    .col-md-99 {
+        width: 75%;
+    }
+
+    .bottom-product {
+        margin-bottom: 2em;
+    }
+
+    nav.in {
+        text-align: center;
+    }
+</style>

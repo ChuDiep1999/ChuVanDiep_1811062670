@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<ChuVanDiep_1811062670.Models.baihat>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index2</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           mã bài hát
+        </th>
+        <th>
+           tên bài há
+        </th>
+        <th>
+          thể loại
+        </th>
+        <th>
+           ca sĩ
+        </th>
+        <th>
+           tác giả
+        </th>
+        <th>
+            hình ảnh
+        </th>
+        <th>
+            thích
+        </th>
+        <th>
+           lời bài ha
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.mabaihat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenbaihat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Theloai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.casi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tacgia)
+            </td>
+            <td>
+                <img src="@Url.Content(item.hinhanh)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thich)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.loibaihat)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index2",
+    new { page }))
